@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div class="home-container">
     <button class="toggle-sidebar-btn" @click="toggleSidebar">☰</button>
     <div v-if="isSidebarVisible" class="overlay" @click="closeSidebar"></div>

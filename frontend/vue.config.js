@@ -3,6 +3,19 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack'); // Import dotenv-webpack
 
 module.exports = {
+
+  chainWebpack: config => {
+    config.plugin('define').tap(args => {
+      const featureFlags = {
+        __VUE_OPTIONS_API__: JSON.stringify(true),
+        __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(false),
+      };
+      args[0] = { ...args[0], ...featureFlags };
+      return args;
+    });
+  },
+
   transpileDependencies: [],
   devServer: {
     proxy: {

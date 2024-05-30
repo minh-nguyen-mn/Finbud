@@ -6,11 +6,13 @@ import ChatView from '@/views/ChatView.vue';
 import SideBar from '@/components/SideBar.vue';
 import TechnologyPage from '@/views/TechnologyPage.vue';
 import PricingPage from '@/views/PricingPage.vue';
+import Risk from '@/views/RiskPage.vue';
 import AboutUsPage from '@/views/AboutUsPage.vue';
 import QuizzPage from '@/views/QuizzPage.vue';
 import StockSimulator from '@/views/StockSimulator.vue';
 import GoalPage from '@/views/GoalPage.vue';
 import RecommendationGenerator from '@/views/RecommendationGenerator.vue';
+import RiskPage from '@/views/RiskPage.vue';
 
 const routes = [
   {
@@ -49,6 +51,11 @@ const routes = [
     path: '/pricing',
     name: 'PricingPage',
     component: PricingPage,
+  },
+  {
+    path: '/risk',
+    name: 'RiskPage',
+    component: RiskPage,
   },
   {
     path: '/about',

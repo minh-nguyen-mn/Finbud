@@ -11,7 +11,7 @@ export default {
   name: 'CompanyCard',
   props: {
     companyName: {
-      type: String,
+      type: String, 
       required: true,
     },
     width: {
