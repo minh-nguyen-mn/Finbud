@@ -7,6 +7,7 @@ import SideBar from '@/components/SideBar.vue';
 import TechnologyPage from '@/views/TechnologyPage.vue';
 import PricingPage from '@/views/PricingPage.vue';
 import Risk from '@/views/RiskPage.vue';
+import CryptoPage from '@/views/CryptoPage.vue';
 import AboutUsPage from '@/views/AboutUsPage.vue';
 import QuizzPage from '@/views/QuizzPage.vue';
 import StockSimulator from '@/views/StockSimulator.vue';
@@ -56,6 +57,11 @@ const routes = [
     path: '/risk',
     name: 'RiskPage',
     component: RiskPage,
+  },
+  {
+    path: '/crypto',
+    name: 'CryptoPage',
+    component: CryptoPage,
   },
   {
     path: '/about',

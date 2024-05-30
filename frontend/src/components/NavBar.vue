@@ -12,6 +12,7 @@
         <li><router-link to="/tech" class="technology">Technology</router-link></li>
         <li><router-link to="/pricing" class="pricing">Pricing</router-link></li>
         <li><router-link to="/risk" class="risk">Risk</router-link></li>
+        <li><router-link to="/crypto" class="crypto">Crypto</router-link></li>
         <li><router-link to="/recommendation-generator" class="recommendation">Recommendations</router-link></li>
       </ul>
       <ul class="nav-actions">

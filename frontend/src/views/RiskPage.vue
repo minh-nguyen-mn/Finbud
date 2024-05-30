@@ -19,7 +19,7 @@
             <th>Change Percent</th>
           </tr>
         </thead>
-        <h1 v-for="stock in stockQuotes">{{  stock }}</h1>
+        <!-- <h1 v-for="stock in stockQuotes">{{  stock }}</h1> -->
         <tbody v-if="stockQuotes.length" class="table-body">
           <tr v-for="stock in stockQuotes" :key="stock['01. symbol']" class="table-row">
             <td>{{ stock['01. symbol'] }}</td>
@@ -41,9 +41,7 @@
 
 <script>
 import axios from 'axios';
-
-// const apiKey = 'LABZ3HFNGRW3418HLABZ3HFNGRW3418H';
-const apiKey = 'MA4HE7Q4W5NYA2HA';
+const apiKey = 'BS4H8D1PZ63W5IC0';
 
 export default {
   name: 'StockQuote',
@@ -59,7 +57,7 @@ export default {
   },
   methods: {
     async fetchStockQuote() {
-      const symbols = ['IBM', 'AAPL', 'GOOGL'];
+      const symbols = ['IBM', 'AAPL', 'GOOGL', 'MSFT', 'AMZN','FB', 'TSLA', 'NFLX', 'NVDA', 'INTC', 'CSCO', 'ORCL', 'ADBE', 'CRM', 'PYPL', 'AMD', 'QCOM', 'TXN', 'AVGO', 'SHOP'];
       try {
         const requests = symbols.map(symbol => {
           const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`;

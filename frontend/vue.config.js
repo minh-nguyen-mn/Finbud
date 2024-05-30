@@ -3,7 +3,10 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack'); // Import dotenv-webpack
 
 module.exports = {
-
+    // by Khoi
+  lintOnSave: false,
+  runtimeCompiler: true,
+  // by Khoi
   chainWebpack: config => {
     config.plugin('define').tap(args => {
       const featureFlags = {
