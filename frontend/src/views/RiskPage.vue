@@ -120,7 +120,7 @@ export default {
         });
 
         const responses = await Promise.all(requests);
-        console.log(responses);
+        console.log('Stock responses:', responses);
         this.stockQuotes = responses.map(response => {
           const quote = response.data['Global Quote'];
           if (quote && Object.keys(quote).length > 0) {
@@ -130,13 +130,34 @@ export default {
           }
         }).filter(quote => quote !== null);
         console.log('Final stockQuotes:', this.stockQuotes);
+        // for (const stock of this.stockQuotes) {
+        //   try {
+        //     await axios.post('/api/saveStock', stock);
+        //   } catch (error) {
+        //     console.log(error);
+        //     throw error;
+        //   }
+        // }
         this.loading = false;
+        this.saveStock();
       } catch (error) {
         this.error = 'Failed to fetch stock quotes';
         console.error('Error:', error);
         this.loading = false;
       }
-    }, async getCryptoPrice() {
+    }, 
+    async saveStock(){
+      for (const stock of this.stockQuotes) {
+          try {
+            await axios.post('/api/saveStock', stock);
+          } catch (error) {
+            console.log(error);
+            throw error;
+          }
+        }
+    },
+    
+    async getCryptoPrice() {
       const url = "https://api.coinranking.com/v2/coins";
       try {
         const res = await axios.get(url, {
@@ -144,9 +165,9 @@ export default {
             'x-access-token': apiKeyCrypto,
           }
         })
-        console.log(res);
+        console.log('Crypto response:',res);
         this.cryptoList = res.data.data.coins;
-        console.log(this.cryptoList);
+        console.log('Final CryptoList:',this.cryptoList);
         this.loadingCrypto = false;
       } catch (error) {
         this.errorCrypto = 'Failed to fetch stock quotes';
