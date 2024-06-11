@@ -139,7 +139,7 @@ export default {
         //   }
         // }
         this.loading = false;
-        this.saveStock();
+        // this.saveStock();
       } catch (error) {
         this.error = 'Failed to fetch stock quotes';
         console.error('Error:', error);
