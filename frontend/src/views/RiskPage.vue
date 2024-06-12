@@ -70,7 +70,6 @@ import axios from 'axios';
 import Pagination from '../components/Pagination.vue';
 const apiKey = 'BS4H8D1PZ63W5IC0';
 const apiKeyCrypto = 'coinranking687d4cc37a39468baeffcc6c0546f518c3c54b2b87e4f73a';
-// const apiKeyCrypto = 'demo';
 
 export default {
   name: 'StockQuote',
@@ -130,16 +129,7 @@ export default {
           }
         }).filter(quote => quote !== null);
         console.log('Final stockQuotes:', this.stockQuotes);
-        // for (const stock of this.stockQuotes) {
-        //   try {
-        //     await axios.post('/api/saveStock', stock);
-        //   } catch (error) {
-        //     console.log(error);
-        //     throw error;
-        //   }
-        // }
         this.loading = false;
-        // this.saveStock();
       } catch (error) {
         this.error = 'Failed to fetch stock quotes';
         console.error('Error:', error);
