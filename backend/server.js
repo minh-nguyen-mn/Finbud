@@ -18,8 +18,7 @@ app.use(bodyParser.json());
 //MongoDB connect
 
 const apiKey = 'CKMO3Q3NLK0OOSZG';
-const firstofJune = moment("2024-06-01", "YYYY-MM-DD").toDate() ;
-console.log(firstofJune);
+const firstofJune = moment("2024-06-01", "YYYY-MM-DD").toDate();
 // Update MongoDB 
 // getCryptoPrice();
 // getStockPrice();
@@ -37,18 +36,20 @@ async function getStockPrice() {
         responses.forEach(response => {
             if (!response) return;
             const metaData = response['Meta Data'];
-            const listOfPrice = response['Monthly Time Series'];
+            const listOfPrice = response['Time Series (Daily)'];
             if (!metaData || !listOfPrice) {
                 console.log('Missing metadata or time series data:', response);
                 return;
             }
+            // console.log("latestDateInDB: ", latestDateInDB);
+            // console.log("firstofJune: ", firstofJune);
             for (const [date, data] of Object.entries(listOfPrice)) {
-                const recordDate = moment(date, "YYYY-MM-DD").endOf('month').toDate();
-
-                // if (!latestDateInDB || recordDate > latestDateInDB) {
-                console.log(`Saving Stock data for ${metaData["2. Symbo"]} for date ${recordDate}`);
-                saveNewStock(metaData, data, recordDate);
-                // }
+                const recordDate = moment(date, "YYYY-MM-DD").toDate();
+                // console.log("recordDate:",recordDate);
+                if ((!latestDateInDB || new Date(recordDate) > new Date(latestDateInDB)) && (new Date(recordDate) > new Date(firstofJune))) {
+                    console.log(`Saving Stock data for ${metaData["2. Symbol"]} for date ${recordDate}`);
+                    saveNewStock(metaData, data, recordDate);
+                }
             }
         });
     } catch (error) {
@@ -56,7 +57,7 @@ async function getStockPrice() {
     }
 }
 async function fetchStockPrice(stockSymbol) {
-    const urlStock = `https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=${stockSymbol}&apikey=${apiKey}`;
+    const urlStock = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stockSymbol}&apikey=${apiKey}`;
     try {
         const res = await axios.get(urlStock, {
             headers: { 'User-Agent': 'request' }
@@ -86,10 +87,9 @@ async function saveNewStock(metaData, data, recordDate) {
 
 
 
-
 // Get Crypto Price to MongoDB 
 async function getCryptoPrice() {
-    const listOfCryptos = ["ETH", "BNB", "SOL"];
+    const listOfCryptos = ["BTC","ETH","SOL"];
     try {
         const requests = listOfCryptos.map(symbol => fetchCryptoPrice(symbol));
         const responses = await Promise.all(requests);
@@ -98,18 +98,20 @@ async function getCryptoPrice() {
         responses.forEach(response => {
             if (!response) return;
             const metaData = response['Meta Data'];
-            const listOfPrice = response['Time Series (Digital Currency Monthly)'];
+            const listOfPrice = response['Time Series (Digital Currency Daily)'];
             if (!metaData || !listOfPrice) {
                 console.log('Missing metadata or time series data:', response);
                 return;
             }
+            // console.log("latestDateInDB: ", latestDateInDB);
+            // console.log("firstofJune: ", firstofJune);
             for (const [date, data] of Object.entries(listOfPrice)) {
-                const recordDate = moment(date, "YYYY-MM-DD").endOf('month').toDate();
-
-                // if (!latestDateInDB || recordDate > latestDateInDB) {
-                console.log(`Saving data for ${metaData["2. Digital Currency Code"]} for date ${recordDate}`);
-                saveNewCrypto(metaData, data, recordDate);
-                // }
+                const recordDate = moment(date, "YYYY-MM-DD").toDate();
+                // console.log("recordDate:", recordDate);
+                if ((!latestDateInDB || new Date(recordDate) > new Date(latestDateInDB)) && (new Date(recordDate) > new Date(firstofJune))) {
+                    console.log(`Saving data for ${metaData["2. Digital Currency Code"]} for date ${recordDate}`);
+                    saveNewCrypto(metaData, data, recordDate);
+                }
             }
         });
     } catch (error) {
@@ -117,7 +119,7 @@ async function getCryptoPrice() {
     }
 }
 async function fetchCryptoPrice(cryptoSymbol) {
-    const urlCrypto = `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_MONTHLY&symbol=${cryptoSymbol}&market=EUR&apikey=${apiKey}`;
+    const urlCrypto = `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=${cryptoSymbol}&market=EUR&apikey=${apiKey}`;
     try {
         const res = await axios.get(urlCrypto, {
             headers: { 'User-Agent': 'request' }
@@ -190,19 +192,3 @@ app.listen(port, () => {
 });
 
 
-// async function saveNewStock1(){
-//     const newStock = new StockPrice({
-//         symbol: 'BBN',
-//         price : 1022,
-//         vollumn : 1123,
-//         change : 123,
-//         percentChange: 123,
-//     })
-//     try{
-//         const savedStock = await newStock.save();
-//         console.log("Stock dave succesfully", savedStock);
-//     }catch( error){
-//         console.log("Error saving new stock", error);
-//     }
-// }
-// saveNewStock1();

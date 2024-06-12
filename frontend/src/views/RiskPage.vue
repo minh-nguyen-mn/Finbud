@@ -183,74 +183,81 @@ export default {
 
 };
 </script>
-
 <style scoped>
-.container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
+  .container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
 
-.data-table {
-  padding: 20px;
-  width: 40%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: 20px 0;
-  border-radius: 10px;
-}
+  .data-table {
+    padding: 20px;
+    width: 40%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    border-radius: 10px;
+  }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  font-size: 0.9rem;
-}
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.9rem;
+  }
 
-thead {
-  background-color: #f8f8f8;
-}
+  thead {
+    background-color: #f8f8f8;
+  }
 
-th,
-td {
-  padding: 8px;
-  text-align: left;
-  border: 1px solid #ddd;
-}
+  th,
+  td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
 
-th {
-  background-color: #f2f2f2;
-}
+  th {
+    background-color: #f2f2f2;
+  }
 
-tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
 
-tr:hover {
-  background-color: #f1f1f1;
-}
+  tr:hover {
+    background-color: #f1f1f1;
+  }
 
-.error {
-  color: red;
-}
+  .error {
+    color: red;
+  }
 
-.loading {
-  color: gray;
-}
+  .loading {
+    color: gray;
+  }
 
-.positive {
-  color: green;
-}
+  .positive {
+    color: green;
+  }
 
-.negative {
-  color: red;
-}
+  .negative {
+    color: red;
+  }
 
-.table-row {
-  transition: background-color 0.3s ease;
-}
+  .table-row {
+    transition: background-color 0.3s ease;
+  }
 
-img {
-  max-width: 30px;
-  height: auto;
-}
+  img {
+    max-width: 30px;
+    height: auto;
+  }
+
+  /* Responsive Styles */
+  @media screen and (max-width: 768px) {
+    .data-table {
+      width: 100%;
+    }
+  }
 </style>
