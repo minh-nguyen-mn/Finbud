@@ -16,10 +16,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //MongoDB connect
-
 const apiKey = 'CKMO3Q3NLK0OOSZG';
 const firstofJune = moment("2024-06-01", "YYYY-MM-DD").toDate();
-// Update MongoDB 
 // getCryptoPrice();
 // getStockPrice();
 mongoose.connect(process.env.MONGODB_URI, {})
@@ -83,9 +81,6 @@ async function saveNewStock(metaData, data, recordDate) {
         console.log("Error saving new stock", error);
     }
 }
-
-
-
 
 // Get Crypto Price to MongoDB 
 async function getCryptoPrice() {
