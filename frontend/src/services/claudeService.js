@@ -3,7 +3,7 @@ const moment = require('moment');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const apiKey = 'CKMO3Q3NLK0OOSZG';
 // Access your API key as an environment variable (see "Set up your API key" above)
-const genAI = new GoogleGenerativeAI('process.env.API_KEY');
+const genAI = new GoogleGenerativeAI('AIzaSyBoqZUePAhe5n5INyoApGlytjx57t8-UYI');
 // Only fetch data from June 1st to reduce the processing time
 const firstofJune = moment("2024-06-01", "YYYY-MM-DD").toDate();
 generate();
