@@ -155,6 +155,7 @@ const analyzeStock = require('./functions/analyzeStock').handler;
 const defineTerm = require('./functions/defineTerm').handler;
 const generateQuiz = require('./functions/generateQuiz').handler;
 const normAns = require('./functions/normAns').handler;
+const analyzeRisk = require('./functions/analyzeRisk').handler;
 
 // Helper to handle async route handlers
 const asyncHandler = fn => (req, res, next) => {
@@ -181,6 +182,10 @@ app.post('/normAns', asyncHandler(async (req, res) => {
     const response = await normAns({ body: JSON.stringify(req.body) }, null);
     res.status(response.statusCode).json(JSON.parse(response.body));
 }));
+app.post('/analyzeRisk', asyncHandler(async(req, res) => {
+    const response = await analyzeRisk({ body: JSON.stringify(req.body) }, null);
+    res.status(response.statusCode).json(JSON.parse(response.body));
+}))
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
