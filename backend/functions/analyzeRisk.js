@@ -17,7 +17,7 @@ exports.handler = async (req) =>{
         console.error("Error in analyzeRisk:", error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Internal Server Error' })
+            body: JSON.stringify({ error: 'From analyzeRisk.js :Internal Server Error' })
         };
     }
 }

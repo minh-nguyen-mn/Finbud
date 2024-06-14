@@ -120,11 +120,11 @@ export default {
         async handleMessage(userMessage) {
             const response = await axios.post(`${apiUrl}/analyzeRisk`, {  userMessage });
             console.log("API response:", response);
-            console.log(typeof(response.data.text));
-            // const jsonObject = JSON.parse(response.data);
-            // const messageContent = jsonObject.text;
-            // const formattedContent = messageContent.replace(/\\n/g, '\n').trim();
-            await this.addTypingResponse(response.data.text, false);
+            console.log(typeof(response.data));
+            // console.log(typeof(response.data.text));
+            // await this.addTypingResponse(response.data.text, false);
+            console.log(typeof(response.data));
+            await this.addTypingResponse(response.data, false);
         },
         addTypingResponse(text, isUser) {
             const typingMessage = {
