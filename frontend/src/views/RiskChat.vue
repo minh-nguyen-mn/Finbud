@@ -61,39 +61,39 @@ export default {
     methods: {
         // Thread functions
         toggleSidebar() {
-      this.isSidebarVisible = !this.isSidebarVisible;
-    },
-    closeSidebar() {
-      this.isSidebarVisible = false;
-    },
-    updateCurrentThread(newThreadId) {
-      const thread = this.threads.find(thread => thread.id.toString() === newThreadId);
-      if (thread) {
-        this.currentThread = thread;
-        this.messages = thread.messages || [];
-      } else {
-        this.currentThread = {};
-        this.messages = [];
-      }
-    },
-    addThread(newThread) {
-      newThread.id = this.threads.length + 1;
-      this.threads.push(newThread);
-    },
-    editThread(index) {
-      this.threads[index].editing = true;
-    },
-    saveThreadName({ newName, index }) {
-      this.threads[index].name = newName;
-      this.threads[index].editing = false;
-    },
-    cancelEdit(index) {
-      this.threads[index].editing = false;
-    },
-    selectThread(index) {
-      this.updateCurrentThread(this.threads[index].id.toString());
-    },
-    // message function
+            this.isSidebarVisible = !this.isSidebarVisible;
+        },
+        closeSidebar() {
+            this.isSidebarVisible = false;
+        },
+        updateCurrentThread(newThreadId) {
+            const thread = this.threads.find(thread => thread.id.toString() === newThreadId);
+            if (thread) {
+                this.currentThread = thread;
+                this.messages = thread.messages || [];
+            } else {
+                this.currentThread = {};
+                this.messages = [];
+            }
+        },
+        addThread(newThread) {
+            newThread.id = this.threads.length + 1;
+            this.threads.push(newThread);
+        },
+        editThread(index) {
+            this.threads[index].editing = true;
+        },
+        saveThreadName({ newName, index }) {
+            this.threads[index].name = newName;
+            this.threads[index].editing = false;
+        },
+        cancelEdit(index) {
+            this.threads[index].editing = false;
+        },
+        selectThread(index) {
+            this.updateCurrentThread(this.threads[index].id.toString());
+        },
+        // message functions
         clearMessage() {
             this.newMessage = '';
         },
@@ -104,11 +104,8 @@ export default {
                 typing: true,
                 timestamp: new Date().toLocaleTimeString()
             });
-
             this.newMessage = '';
-
             const userMessage = this.messages[this.messages.length - 1].text;
-
             try {
                 await this.handleMessage(userMessage);
             } catch (error) {
