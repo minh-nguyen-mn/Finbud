@@ -183,7 +183,10 @@ app.post('/normAns', asyncHandler(async (req, res) => {
     res.status(response.statusCode).json(JSON.parse(response.body));
 }));
 app.post('/analyzeRisk', asyncHandler(async(req, res) => {
+    console.log("request from server.js :", req.body);
     const response = await analyzeRisk({ body: JSON.stringify(req.body) }, null);
+    console.log("Response from server.js",response)
+    console.log("Type of response:", typeof(response.body));
     res.status(response.statusCode).json(JSON.parse(response.body));
 }))
 

@@ -36,7 +36,7 @@ export default {
         MessageComponent,
         UserInput,
         SideBar,
-        ChatFrame
+        ChatFrame,
     },
     data() {
         return {
@@ -109,7 +109,7 @@ export default {
             try {
                 await this.handleMessage(userMessage);
             } catch (error) {
-                console.error('Error:', error);
+                console.log('Error in step 1:', error);
                 this.messages.push({
                     text: `Error processing your message.`,
                     isUser: false,
@@ -118,11 +118,13 @@ export default {
             }
         },
         async handleMessage(userMessage) {
-            const response = await axios.post(`${apiUrl}/analyzeRisk`, { term: userMessage });
-            const jsonObject = JSON.parse(response.data.body);
-            const messageContent = jsonObject.message;
-            const formattedContent = messageContent.replace(/\\n/g, '\n').trim();
-            await this.addTypingResponse(formattedContent, false);
+            const response = await axios.post(`${apiUrl}/analyzeRisk`, {  userMessage });
+            console.log("API response:", response);
+            console.log(typeof(response.data.text));
+            // const jsonObject = JSON.parse(response.data);
+            // const messageContent = jsonObject.text;
+            // const formattedContent = messageContent.replace(/\\n/g, '\n').trim();
+            await this.addTypingResponse(response.data.text, false);
         },
         addTypingResponse(text, isUser) {
             const typingMessage = {
