@@ -35,8 +35,9 @@ export default {
         ChatFrame,
         MessageComponent,
         UserInput,
-        SideBar,
+        // SideBar,
         ChatFrame,
+        ChatHeader,
     },
     data() {
         return {
@@ -123,7 +124,6 @@ export default {
             console.log(typeof(response.data));
             // console.log(typeof(response.data.text));
             // await this.addTypingResponse(response.data.text, false);
-            console.log(typeof(response.data));
             await this.addTypingResponse(response.data, false);
         },
         addTypingResponse(text, isUser) {
@@ -160,7 +160,7 @@ export default {
 <style scoped>
 .home-container {
     display: flex;
-    width: 100%;
+    width: 40%;
     height: 100vh;
 }
 

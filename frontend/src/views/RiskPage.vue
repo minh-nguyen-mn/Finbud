@@ -1,5 +1,5 @@
 <template>
-  <RiskChat/>
+  <!-- <RiskChat/> -->
   <div class="container">
     <div class="data-table">
       <h1>Stock Quotes</h1>
@@ -63,6 +63,8 @@
           @update:currentPage="updateCryptoCurrentPage" />
       </div>
     </div>
+    
+    <RiskChat/>
   </div>
 </template>
 
