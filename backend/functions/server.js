@@ -4,8 +4,10 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 //----- import the Routes/Endpoints -----------
-import threadRoute from './Endpoints/threadtRoute.js';
-import userRoute from './Endpoints/userRoute.js';
+import threadRoute from '../Endpoints/threadtRoute.js';
+import userRoute from '../Endpoints/userRoute.js';
+
+import serverless from 'serverless-http';
 
 //load environment variable from .env
 dotenv.config();
@@ -30,11 +32,8 @@ app
   .use(bodyParser.json())
   .use(cors())
 //define endpoints
-  .use('/',threadRoute)
-  .use('/', userRoute)
-  .listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+  .use('/api/',threadRoute)
+  .use('/api/', userRoute)
 
 app.post('/analyzeRisk', asyncHandler(async(req, res) => {
   console.log("request from server.js :", req.body);
@@ -51,6 +50,8 @@ app.post('/analyzeRisk', asyncHandler(async(req, res) => {
       res.status(response.statusCode).send(response.body);
   }
 }))
+export const handler = serverless(app);
+
 // // Import the functions
 // const analyzeStock = require('./functions/analyzeStock').handler;
 // const defineTerm = require('./functions/defineTerm').handler;
