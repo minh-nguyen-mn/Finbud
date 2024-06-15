@@ -13,11 +13,8 @@ import QuizzPage from '@/views/QuizzPage.vue';
 import StockSimulator from '@/views/StockSimulator.vue';
 import GoalPage from '@/views/GoalPage.vue';
 import RecommendationGenerator from '@/views/RecommendationGenerator.vue';
-<<<<<<< HEAD
 import RiskPage from '@/views/RiskPage.vue';
-=======
 import MarketDataCenter from '@/views/MarketDataCenter.vue';
->>>>>>> 3b0ff6f50bbba3ef4fd561da4ac058f7260d2c57
 
 const routes = [
   {

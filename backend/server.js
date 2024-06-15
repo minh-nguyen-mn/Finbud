@@ -36,7 +36,21 @@ app
   console.log(`Server is running on port ${port}`);
 });
 
-
+app.post('/analyzeRisk', asyncHandler(async(req, res) => {
+  console.log("request from server.js :", req.body);
+  const response = await analyzeRisk({ body: JSON.stringify(req.body) }, null);
+  console.log("Response from server.js",response)
+  console.log("Type of response.body:", typeof(response.body));
+  try {
+      // Attempt to parse response.body as JSON
+      const responseBody = JSON.parse(response.body); // body: {"text": "..."}
+      res.status(response.statusCode).json(responseBody);
+  } catch (error) {
+      // If parsing fails, treat response.body as plain text
+      console.error('Failed to parse response body:', error); // body: {"...."}
+      res.status(response.statusCode).send(response.body);
+  }
+}))
 // // Import the functions
 // const analyzeStock = require('./functions/analyzeStock').handler;
 // const defineTerm = require('./functions/defineTerm').handler;
